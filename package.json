@@ -1,7 +1,7 @@
 {
   "name": "firebase-redis-cache",
   "version": "1.0.0",
-  "description": "Um pacote para cachear coleções do Firebase Firestore no Redis.",
+  "description": "Package that cache indicated firebase collection",
   "main": "firebaseCache.js",
   "keywords": [
     "firebase",
@@ -9,7 +9,7 @@
     "redis",
     "cache"
   ],
-  "author": "Seu Nome",
+  "author": "Victor Cotrim",
   "license": "MIT",
   "dependencies": {
     "firebase-admin": "^11.10.1",
