@@ -12,11 +12,12 @@
   "author": "Victor Cotrim",
   "license": "MIT",
   "dependencies": {
-    "firebase-admin": "^11.10.1",
+    "firebase": "^11.0.0",
     "ioredis": "^5.3.2"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "redis": "redis-server"
   },
   "devDependencies": {
     "jest": "^29.7.0"
