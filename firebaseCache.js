@@ -1,21 +1,20 @@
-const admin = require("firebase-admin");
+const { initializeApp } = require("firebase/app");
+const { getFirestore } = require("firebase/firestore");
 const Redis = require("ioredis");
+const FirestoreWrapper = require("./FirestoreWrapper");
 const FirebaseRedisCache = require("./FirebaseRedisCache");
 
 function initializeFirebase(credentials) {
-  if (!admin.apps.length) {
-    admin.initializeApp({
-      credential: admin.credential.cert(credentials),
-    });
-  }
-  return admin.firestore();
+  const firebaseApp = initializeApp(credentials);
+  return getFirestore(firebaseApp);
 }
 
 function createCacheInstance(credentials) {
   const firestore = initializeFirebase(credentials);
-  const redis = new Redis(); // Conexão real com Redis
+  const firestoreWrapper = new FirestoreWrapper(firestore);
+  const redis = new Redis();
 
-  return new FirebaseRedisCache({ firestore, redis });
+  return new FirebaseRedisCache({ firestoreWrapper, redis });
 }
 
 module.exports = createCacheInstance;
