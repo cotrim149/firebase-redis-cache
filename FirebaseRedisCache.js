@@ -1,6 +1,6 @@
 class FirebaseRedisCache {
-  constructor({ firestore, redis }) {
-    this.db = firestore;
+  constructor({ firestoreWrapper, redis }) {
+    this.firestoreWrapper = firestoreWrapper;
     this.redis = redis;
   }
 
@@ -14,19 +14,14 @@ class FirebaseRedisCache {
       return JSON.parse(cachedData);
     }
 
-    // 2️⃣ Se não estiver no cache, busca no Firestore
+    // 2️⃣ Se não estiver no cache, busca no Firestore via wrapper
     console.log(`⏳ Buscando dados da coleção "${collectionName}" no Firestore...`);
-    const snapshot = await this.db.collection(collectionName).get();
+    const dataList = await this.firestoreWrapper.getCollectionData(collectionName);
 
-    if (snapshot.empty) {
+    if (dataList.length === 0) {
       console.log(`Nenhum documento encontrado na coleção "${collectionName}".`);
       return [];
     }
-
-    const dataList = [];
-    snapshot.forEach((doc) => {
-      dataList.push({ id: doc.id, ...doc.data() });
-    });
 
     // 3️⃣ Salva no cache com tempo de expiração (1 hora)
     await this.redis.set(cacheKey, JSON.stringify(dataList), "EX", 3600);
