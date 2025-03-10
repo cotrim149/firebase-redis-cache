@@ -1,6 +1,6 @@
 {
   "name": "firebase-redis-cache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Package that cache indicated firebase collection",
   "main": "firebaseCache.js",
   "keywords": [
@@ -20,5 +20,10 @@
   },
   "devDependencies": {
     "jest": "^29.7.0"
-  }
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/cotrim149/firebase-redis-cache"
+  },
+  "homepage": "https://github.com/cotrim149/firebase-redis-cache"
 }
