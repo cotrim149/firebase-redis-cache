@@ -17,4 +17,4 @@ function createCacheInstance(credentials) {
   return new FirebaseRedisCache({ firestoreWrapper, redis });
 }
 
-module.exports = createCacheInstance;
+module.exports = {createCacheInstance, initializeFirebase};
