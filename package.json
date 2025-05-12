@@ -1,6 +1,6 @@
 {
   "name": "firebase-redis-cache",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Package that cache indicated firebase collection",
   "main": "firebaseCache.js",
   "keywords": [
